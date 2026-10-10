@@ -91,7 +91,7 @@ img{max-width:100%;height:auto;display:block;}
 .nav-actions{
   display:flex;
   align-items:center;
-  gap:14px;
+  gap:12px;
   flex-shrink:0;
 }
 .navcta{
@@ -105,6 +105,29 @@ img{max-width:100%;height:auto;display:block;}
   display:inline-block;
 }
 .navcta:hover{background:var(--gold);color:#0a0a08;}
+
+/* Phone Quick Call Button */
+.nav-phone-btn{
+  width:36px;
+  height:36px;
+  border:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--gold-soft);
+  transition:border-color .2s, background .2s, color .2s;
+  flex-shrink:0;
+}
+.nav-phone-btn:hover{
+  border-color:var(--gold);
+  background:var(--gold);
+  color:#0a0a08;
+}
+.nav-phone-btn svg{
+  width:16px;
+  height:16px;
+  fill:currentColor;
+}
 
 .langswitch{display:flex;border:1px solid var(--line);overflow:hidden;}
 .langswitch button{
@@ -128,11 +151,27 @@ img{max-width:100%;height:auto;display:block;}
 }
 #mobilemenu{
   position:fixed;inset:0;background:var(--black);z-index:499;
-  display:none;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;
   padding:20px;
 }
 #mobilemenu.open{display:flex;}
-#mobilemenu a{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--ivory);}
+#mobilemenu a{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ivory);}
+#mobilemenu .mobile-phone-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  border:1px solid var(--line);
+  padding:10px 22px;
+  font-family:'Jost',sans-serif;
+  font-size:14px;
+  letter-spacing:.04em;
+  color:var(--gold-soft);
+}
+#mobilemenu .mobile-phone-link svg{
+  width:16px;
+  height:16px;
+  fill:currentColor;
+}
 #mobilemenu .navcta{display:inline-block;font-family:'Jost',sans-serif;font-size:14px;}
 
 /* ---------- HERO ---------- */
@@ -237,9 +276,7 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
   background:rgba(239,233,219,0.35);
   transition:background .2s;
 }
-.apt-dot.active{
-  background:var(--gold);
-}
+.apt-dot.active{background:var(--gold);}
 
 .apt-card .info{padding:26px 26px 30px;flex:1;display:flex;flex-direction:column;}
 .apt-card h3{font-size:25px;color:var(--ivory);}
@@ -286,10 +323,6 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
 .zoomctrl button:hover{border-color:var(--gold);color:var(--gold);}
 .modal .body{padding:36px 40px 44px;}
 .modal h3{font-size:clamp(26px, 4vw, 32px);}
-.modal .mspecs{display:flex;gap:30px;flex-wrap:wrap;margin:20px 0 22px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-.modal .mspecs div span{display:block;color:var(--ivory-dim);font-size:13px;letter-spacing:.06em;margin-bottom:6px;}
-.modal .mspecs div b{font-family:'Cormorant Garamond',serif;font-size:23px;color:var(--gold-soft);font-weight:500;}
-.modal .mdesc{color:var(--ivory-dim);line-height:1.75;font-size:16px;max-width:620px;}
 .modal .msubnote{display:block;margin-top:12px;color:var(--gold-soft);font-size:15.5px;letter-spacing:.02em;}
 .modal .mprice{margin-top:26px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
 .modal .mprice b{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--ivory);font-weight:500;}
@@ -297,6 +330,33 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
 .thumbrow img{width:64px;height:48px;object-fit:cover;cursor:pointer;opacity:.55;border:1px solid transparent;transition:.2s;flex-shrink:0;}
 .thumbrow img:hover,.thumbrow img.active{opacity:1;border-color:var(--gold);}
 @media(max-width:640px){.modal .body{padding:24px 20px 30px;}}
+
+/* ---------- APARTMENT SPECS TABLE ---------- */
+.apt-specs-table{
+  width:100%;
+  max-width:620px;
+  border-collapse:collapse;
+  margin:22px 0 20px;
+  border-top:1px solid var(--line);
+  font-size:14.5px;
+}
+.apt-specs-table tr{
+  border-bottom:1px solid rgba(201,162,75,0.2);
+}
+.apt-specs-table td{
+  padding:10px 14px;
+}
+.apt-specs-table td.spec-lbl{
+  color:var(--ivory-dim);
+  font-weight:400;
+  letter-spacing:.04em;
+  width:45%;
+}
+.apt-specs-table td.spec-val{
+  color:var(--gold-soft);
+  font-weight:500;
+  text-align:right;
+}
 
 .lb-nav{
   position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid var(--line);
@@ -322,7 +382,6 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
 @media(max-width:860px){.unit-grid{grid-template-columns:repeat(3,1fr);}}
 @media(max-width:480px){.unit-grid{grid-template-columns:repeat(2,1fr);}}
 
-/* Units styling: Brighter boxes when reserved, sold or unavailable + crisp light border for all units */
 .unit{
   border:1px solid rgba(201,162,75,0.45) !important;
   padding:16px 10px;
@@ -340,7 +399,7 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
 .unit small{
   display:block;
   margin-top:6px;
-  font-size:14.5px !important; /* Increased font size ~20% */
+  font-size:14.5px !important;
   letter-spacing:.04em;
   color:var(--ivory-dim);
   line-height:1.35;
@@ -385,17 +444,72 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
   .price-row .from{text-align:right;}
 }
 
-/* ---------- AMENITIES ---------- */
+/* ---------- AMENITIES (Item 1 visible, 2-4 hidden & renumbered 1,2,3) ---------- */
 #amenities{background:var(--black-2);}
 .am-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:56px;}
-.am-list{display:flex;flex-direction:column;gap:26px;}
-.am-item{display:flex;gap:20px;padding-bottom:26px;border-bottom:1px solid var(--line);}
-.am-item .n{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:20px;min-width:34px;}
-.am-item h4{font-size:20px;margin-bottom:6px;font-family:'Cormorant Garamond',serif;font-weight:500;}
-.am-item p{color:var(--ivory-dim);font-size:15.5px;line-height:1.6;}
-.am-imgwrap{aspect-ratio:5/6;overflow:hidden;position:relative;}
+.am-featured{display:flex;flex-direction:column;gap:20px;}
+.am-featured h4{font-size:23px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--gold-soft);line-height:1.3;}
+.am-featured p{color:var(--ivory-dim);font-size:16px;line-height:1.75;white-space:pre-line;}
+.am-imgwrap{aspect-ratio:5/6;overflow:hidden;position:relative;border:1px solid var(--line);}
 .am-imgwrap img{width:100%;height:100%;object-fit:cover;}
-@media(max-width:860px){.am-grid{grid-template-columns:1fr;gap:40px;}.am-imgwrap{order:-1;}}
+
+.am-toggle-btn{
+  margin-top:34px;
+  border:1px solid var(--line);
+  background:rgba(18,18,16,0.7);
+  color:var(--gold-soft);
+  padding:14px 28px;
+  font-family:'Jost',sans-serif;
+  font-size:14px;
+  letter-spacing:.06em;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  transition:all .3s ease;
+}
+.am-toggle-btn:hover{
+  border-color:var(--gold);
+  background:rgba(189,150,61,0.12);
+  color:var(--ivory);
+}
+.am-toggle-btn .arrow-icon{
+  width:12px;
+  height:12px;
+  transition:transform .35s ease;
+}
+.am-toggle-btn.open .arrow-icon{
+  transform:rotate(180deg);
+}
+
+.am-drawer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s cubic-bezier(0.4,0,0.2,1), opacity .5s ease;
+  opacity:0;
+  margin-top:0;
+}
+.am-drawer.open{
+  max-height:2000px;
+  opacity:1;
+  margin-top:36px;
+}
+.am-drawer-list{
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+  border-top:1px solid var(--line);
+  padding-top:34px;
+}
+.am-item{display:flex;gap:22px;padding-bottom:26px;border-bottom:1px solid var(--line);}
+.am-item .n{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:22px;min-width:34px;}
+.am-item h4{font-size:20px;margin-bottom:8px;font-family:'Cormorant Garamond',serif;font-weight:500;}
+.am-item p{color:var(--ivory-dim);font-size:15.5px;line-height:1.65;white-space:pre-line;}
+
+@media(max-width:860px){
+  .am-grid{grid-template-columns:1fr;gap:40px;}
+  .am-imgwrap{order:-1;}
+}
 
 /* ---------- GALLERY ---------- */
 .gal-grid{
@@ -462,16 +576,90 @@ h2.headline{font-size:clamp(28px,3.8vw,40px);line-height:1.15;max-width:820px;}
 .formmsg.show{display:block;}
 @media(max-width:860px){.cgrid{grid-template-columns:1fr;gap:36px;}.form-row{grid-template-columns:1fr;}}
 
-/* ---------- PARTNERS ---------- */
+/* ---------- PARTNERS (Collapsible Dropdown + Smaller Logos) ---------- */
 #partners{background:var(--black);}
-.partners-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px;}
-.partner-card{border:1px solid var(--line);background:var(--black-2);padding:30px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:border-color .25s,transform .25s;}
+.partners-toggle-wrap{
+  margin-top:32px;
+  display:flex;
+  justify-content:flex-start;
+}
+.partners-toggle-btn{
+  border:1px solid var(--line);
+  background:rgba(18,18,16,0.6);
+  color:var(--gold-soft);
+  padding:14px 28px;
+  font-family:'Jost',sans-serif;
+  font-size:14px;
+  letter-spacing:.06em;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  transition:all .3s ease;
+}
+.partners-toggle-btn:hover{
+  border-color:var(--gold);
+  background:rgba(189,150,61,0.12);
+  color:var(--ivory);
+}
+.partners-toggle-btn .arrow-icon{
+  width:12px;
+  height:12px;
+  transition:transform .35s ease;
+}
+.partners-toggle-btn.open .arrow-icon{
+  transform:rotate(180deg);
+}
+
+.partners-collapse{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s cubic-bezier(0.4, 0, 0.2, 1), opacity .5s ease;
+  opacity:0;
+  margin-top:0;
+}
+.partners-collapse.open{
+  max-height:2400px;
+  opacity:1;
+  margin-top:40px;
+}
+
+.partners-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.partner-card{
+  border:1px solid var(--line);
+  background:var(--black-2);
+  padding:18px 14px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:border-color .25s,transform .25s;
+}
 .partner-card:hover{border-color:var(--gold);transform:translateY(-2px);}
-.partner-logo-box{width:100%;aspect-ratio:16/9;border:1px dashed rgba(201,162,75,.35);display:flex;align-items:center;justify-content:center;margin-bottom:16px;background:rgba(10,10,8,.5);}
-.partner-logo-box span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ivory-dim);opacity:.75;}
-.partner-logo-box img{max-width:80%;max-height:70%;object-fit:contain;}
-.partner-name{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--gold-soft);font-weight:500;}
-.partner-role{font-size:13.5px;color:var(--ivory-dim);letter-spacing:.04em;margin-top:4px;}
+.partner-logo-box{
+  width:100%;
+  height:54px;
+  border:1px dashed rgba(201,162,75,.28);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:12px;
+  background:rgba(10,10,8,.6);
+  padding:6px;
+}
+.partner-logo-box span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ivory-dim);opacity:.75;}
+.partner-logo-box img{
+  max-width:85%;
+  max-height:40px;
+  object-fit:contain;
+}
+.partner-name{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold-soft);font-weight:500;}
+.partner-role{font-size:12.5px;color:var(--ivory-dim);letter-spacing:.03em;margin-top:3px;}
 @media(max-width:900px){.partners-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:480px){.partners-grid{grid-template-columns:1fr;}}
 
@@ -481,6 +669,80 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-
 footer .brand{font-size:18px;}
 footer .brand-logo{height:28px;}
 footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
+
+/* ---------- COOKIE BANNER ---------- */
+#cookieBanner{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  right:20px;
+  max-width:680px;
+  margin:0 auto;
+  background:rgba(18,18,16,0.96);
+  border:1px solid var(--gold);
+  box-shadow:0 12px 36px rgba(0,0,0,0.85);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  padding:20px 24px;
+  z-index:99999;
+  display:none;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  border-radius:2px;
+}
+#cookieBanner.show{display:flex;}
+#cookieBanner p{
+  font-size:13.5px;
+  line-height:1.55;
+  color:var(--ivory-dim);
+  margin:0;
+}
+#cookieBanner .cookie-actions{
+  display:flex;
+  gap:10px;
+  flex-shrink:0;
+}
+.cookie-btn{
+  border:1px solid var(--gold);
+  background:var(--gold);
+  color:#0a0a08;
+  padding:8px 16px;
+  font-size:12.5px;
+  font-weight:500;
+  letter-spacing:.05em;
+  cursor:pointer;
+  font-family:'Jost',sans-serif;
+  transition:all .2s;
+  white-space:nowrap;
+}
+.cookie-btn:hover{
+  background:var(--gold-soft);
+}
+.cookie-btn-ghost{
+  background:transparent;
+  color:var(--ivory);
+  border-color:var(--line);
+}
+.cookie-btn-ghost:hover{
+  border-color:var(--gold);
+  color:var(--gold-soft);
+  background:transparent;
+}
+@media(max-width:640px){
+  #cookieBanner{
+    flex-direction:column;
+    align-items:flex-start;
+    bottom:12px;
+    left:12px;
+    right:12px;
+    padding:16px 18px;
+  }
+  #cookieBanner .cookie-actions{
+    width:100%;
+    justify-content:flex-end;
+  }
+}
 
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;}}
 
@@ -503,6 +765,12 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
   .unit b { font-size: 19px !important; }
   .unit small { font-size: 14.5px !important; }
   
+  #about .imgwrap { aspect-ratio: 16/10 !important; }
+  #about .imgwrap img { object-fit: cover !important; height: 100% !important; }
+    
+  
+  /* SECTION & NAV VISIBILITY INJECTIONS */
+
 
   /* DYNAMIC SINGLE-LINE TIMELINE */
   .tline {
@@ -560,7 +828,6 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
     display: inline-block; border: 1px solid var(--gold); color: var(--gold-soft); padding: 4px 12px;
     font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
   }
-  
 </style>
 </head>
 <body>
@@ -579,6 +846,10 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
       <a href="#partners" data-i18n="nav_partners">Partners</a>
     </div>
     <div class="nav-actions">
+      <!-- Quick Call Button for Desktop & Mobile -->
+      <a href="tel:+407XXXXXXXX" class="nav-phone-btn" title="Call Sales Office" aria-label="Call Sales Office" data-i18n-label="aria_call">
+        <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      </a>
       <div class="langswitch" id="langSwitch" role="group" aria-label="Language" data-i18n-label="aria_language">
         <button data-lang="en" class="active">EN</button>
         <button data-lang="ro">RO</button>
@@ -598,6 +869,10 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
   <a href="#gallery" data-i18n="nav_gallery">Gallery</a>
   <a href="#location" data-i18n="nav_location">Location</a>
   <a href="#partners" data-i18n="nav_partners">Partners</a>
+  <a href="tel:+407XXXXXXXX" class="mobile-phone-link">
+    <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    <span data-i18n="call_now">Call Sales</span>
+  </a>
   <div class="langswitch" id="langSwitchMobile" role="group" aria-label="Language" data-i18n-label="aria_language" style="margin-top:6px;">
     <button data-lang="en" class="active">EN</button>
     <button data-lang="ro">RO</button>
@@ -723,16 +998,48 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
   </div>
 </section>
 
+<!-- AMENITIES SECTION (Clean Item 1 + Collapsible 1, 2, 3) -->
 <section id="amenities">
   <div class="wrap">
-    <div class="eyebrow" data-i18n="amen_eyebrow">QUALITY &amp; AMENITIES</div>
-    <h2 class="headline reveal" data-i18n="amen_h2">Considered, down to the details</h2>
+    <div class="eyebrow" data-i18n="amen_eyebrow">FINISHES &amp; SPECIFICATIONS</div>
+    <h2 class="headline reveal" data-i18n="amen_h2">Quality You Can See. Comfort You Can Feel.</h2>
     <div class="am-grid">
-      <div class="am-list reveal">
-        <div class="am-item"><span class="n">01</span><div><h4 data-i18n="am1_h">Two underground parking levels</h4><p data-i18n="am1_p">Private, secured parking for residents, with direct lift access to every floor.</p></div></div>
-        <div class="am-item"><span class="n">02</span><div><h4 data-i18n="am2_h">High-quality materials throughout</h4><p data-i18n="am2_p">Natural stone, brushed brass and European oak finishes, selected for durability and quiet elegance.</p></div></div>
-        <div class="am-item"><span class="n">03</span><div><h4 data-i18n="am3_h">Attended lobby &amp; reception</h4><p data-i18n="am3_p">A staffed reception welcomes residents and guests, day and evening.</p></div></div>
-        <div class="am-item"><span class="n">04</span><div><h4 data-i18n="am4_h">Delivery — September 2027</h4><p data-i18n="am4_p">Construction is progressing towards a scheduled handover in September 2027.</p></div></div>
+      <div class="am-featured reveal">
+        <h4 data-i18n="am1_h">Considered, down to the details</h4>
+        <p data-i18n="am1_p">At NOBLES RESIDENCE, quality is considered from the very beginning — from the architecture and technical systems of the building to the materials, finishes and details that shape each home.</p>
+        
+        <div>
+          <button class="am-toggle-btn" id="amToggleBtn" aria-expanded="false">
+            <span class="btn-txt" data-i18n="am_show_more">See more specifications</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+
+        <div class="am-drawer" id="amDrawer">
+          <div class="am-drawer-list">
+            <div class="am-item">
+              <span class="n">01</span>
+              <div>
+                <h4 data-i18n="am2_h">HEATING SYSTEM</h4>
+                <p data-i18n="am2_p"></p>
+              </div>
+            </div>
+            <div class="am-item">
+              <span class="n">02</span>
+              <div>
+                <h4 data-i18n="am3_h">AIR CONDITIONING &amp; CLIMATE CONTROL</h4>
+                <p data-i18n="am3_p"></p>
+              </div>
+            </div>
+            <div class="am-item">
+              <span class="n">03</span>
+              <div>
+                <h4 data-i18n="am4_h">WINDOWS &amp; EXTERIOR JOINERY</h4>
+                <p data-i18n="am4_p"></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="am-imgwrap reveal"><img src="images/reception.jpg" alt="Nobles Residence reception and lobby" data-i18n-alt="alt_reception"></div>
     </div>
@@ -819,71 +1126,82 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
   </div>
 </section>
 
+<!-- PARTNERS SECTION (Collapsible) -->
 <section id="partners">
   <div class="wrap">
     <div class="eyebrow" data-i18n="partners_eyebrow">TRUSTED PARTNERS</div>
     <h2 class="headline reveal" data-i18n="partners_h2">Partners &amp; providers of excellence</h2>
     <p class="lede reveal" data-i18n="partners_lede">The companies, engineers, and master craftsmen who supply the finest materials and execution for Nobles Residence.</p>
-    <div class="partners-grid reveal" id="partnersGrid">
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-1-22f0e252.jpg" alt="WESTFOURTH ARCHITECTURE logo"></div>
-        <div class="partner-name">WESTFOURTH ARCHITECTURE</div>
-        <div class="partner-role" data-i18n="partner_role_1">Architectural Design</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-2-c0c739fe.jpg" alt="SCHUCO logo"></div>
-        <div class="partner-name">SCHUCO</div>
-        <div class="partner-role" data-i18n="partner_role_2">for sustainable building envelopes</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-3-03a3d753.jpg" alt="DE DIETRICH logo"></div>
-        <div class="partner-name">DE DIETRICH</div>
-        <div class="partner-role" data-i18n="partner_role_3">Boilers / Heating systems</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-4-6b4f0e37.jpg" alt="PINUM logo"></div>
-        <div class="partner-name">PINUM</div>
-        <div class="partner-role" data-i18n="partner_role_4">interior and entrance doors</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-5-122108fd.jpg" alt="DAIKIN logo"></div>
-        <div class="partner-name">DAIKIN</div>
-        <div class="partner-role" data-i18n="partner_role_5">central air conditioning</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-6-db863cc9.jpg" alt="SCHINDLER logo"></div>
-        <div class="partner-name">SCHINDLER</div>
-        <div class="partner-role" data-i18n="partner_role_6">Best Elevator Solutions</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-7-8d1d833f.jpg" alt="GRUNDFOS logo"></div>
-        <div class="partner-name">GRUNDFOS</div>
-        <div class="partner-role" data-i18n="partner_role_7">Global leader in water solutions</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-8-3b6dd8f4.jpg" alt="REHAU logo"></div>
-        <div class="partner-name">REHAU</div>
-        <div class="partner-role" data-i18n="partner_role_8">Heating, Plumbing and Heating Systems</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-9-49c363fc.jpg" alt="PURMO logo"></div>
-        <div class="partner-name">PURMO</div>
-        <div class="partner-role" data-i18n="partner_role_9">Radiators and floor-mounted convectors – Aquilo</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-10-34697a7a.jpg" alt="GROHE logo"></div>
-        <div class="partner-name">GROHE</div>
-        <div class="partner-role" data-i18n="partner_role_10">global leader in bathroom faucets</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-11-8aff0607.jpg" alt="CAPAROL logo"></div>
-        <div class="partner-name">CAPAROL</div>
-        <div class="partner-role" data-i18n="partner_role_11">Washable interior paints</div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-logo-box"><img src="images/partner-logo-12-2a92c7d3.jpg" alt="KNAUF logo"></div>
-        <div class="partner-name">KNAUF</div>
-        <div class="partner-role" data-i18n="partner_role_12">Drywall systems</div>
+    
+    <div class="partners-toggle-wrap">
+      <button class="partners-toggle-btn" id="partnersToggleBtn" aria-expanded="false">
+        <span class="btn-txt" data-i18n="partners_show_more">See our partners</span>
+        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+    </div>
+
+    <div class="partners-collapse" id="partnersCollapse">
+      <div class="partners-grid" id="partnersGrid">
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-1-22f0e252.jpg" alt="WESTFOURTH ARCHITECTURE logo"></div>
+          <div class="partner-name">WESTFOURTH ARCHITECTURE</div>
+          <div class="partner-role" data-i18n="partner_role_1">Architectural Design</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-2-c0c739fe.jpg" alt="SCHUCO logo"></div>
+          <div class="partner-name">SCHUCO</div>
+          <div class="partner-role" data-i18n="partner_role_2">for sustainable building envelopes</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-3-03a3d753.jpg" alt="DE DIETRICH logo"></div>
+          <div class="partner-name">DE DIETRICH</div>
+          <div class="partner-role" data-i18n="partner_role_3">Boilers / Heating systems</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-4-6b4f0e37.jpg" alt="PINUM logo"></div>
+          <div class="partner-name">PINUM</div>
+          <div class="partner-role" data-i18n="partner_role_4">interior and entrance doors</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-5-122108fd.jpg" alt="DAIKIN logo"></div>
+          <div class="partner-name">DAIKIN</div>
+          <div class="partner-role" data-i18n="partner_role_5">central air conditioning</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-6-db863cc9.jpg" alt="SCHINDLER logo"></div>
+          <div class="partner-name">SCHINDLER</div>
+          <div class="partner-role" data-i18n="partner_role_6">Best Elevator Solutions</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-7-8d1d833f.jpg" alt="GRUNDFOS logo"></div>
+          <div class="partner-name">GRUNDFOS</div>
+          <div class="partner-role" data-i18n="partner_role_7">Global leader in water solutions</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-8-3b6dd8f4.jpg" alt="REHAU logo"></div>
+          <div class="partner-name">REHAU</div>
+          <div class="partner-role" data-i18n="partner_role_8">Heating, Plumbing and Heating Systems</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-9-49c363fc.jpg" alt="PURMO logo"></div>
+          <div class="partner-name">PURMO</div>
+          <div class="partner-role" data-i18n="partner_role_9">Radiators and floor-mounted convectors – Aquilo</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-10-34697a7a.jpg" alt="GROHE logo"></div>
+          <div class="partner-name">GROHE</div>
+          <div class="partner-role" data-i18n="partner_role_10">global leader in bathroom faucets</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-11-8aff0607.jpg" alt="CAPAROL logo"></div>
+          <div class="partner-name">CAPAROL</div>
+          <div class="partner-role" data-i18n="partner_role_11">Washable interior paints</div>
+        </div>
+        <div class="partner-card">
+          <div class="partner-logo-box"><img src="images/partner-logo-12-2a92c7d3.jpg" alt="KNAUF logo"></div>
+          <div class="partner-name">KNAUF</div>
+          <div class="partner-role" data-i18n="partner_role_12">Drywall systems</div>
+        </div>
       </div>
     </div>
   </div>
@@ -895,6 +1213,15 @@ footer p{font-size:14px;color:var(--ivory-dim);letter-spacing:.02em;}
     <p>Strada Barajul Argeș 36, Sector 1, București · © 2026</p>
   </div>
 </footer>
+
+<!-- COOKIE CONSENT BANNER -->
+<div id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <p data-i18n="cookie_text">We use essential cookies to ensure the proper functionality of our website and to provide you with the best browsing experience.</p>
+  <div class="cookie-actions">
+    <button class="cookie-btn" id="cookieAccept" data-i18n="cookie_accept">Accept All</button>
+    <button class="cookie-btn cookie-btn-ghost" id="cookieDecline" data-i18n="cookie_essential">Essential Only</button>
+  </div>
+</div>
 
 <div class="modal-bg" id="aptModalBg">
   <div class="modal" id="aptModal"></div>
@@ -961,6 +1288,8 @@ const TRANSLATIONS = {
     "nav_location": "Location",
     "nav_partners": "Partners",
     "nav_cta": "Schedule a visit",
+    "call_now": "Call Sales",
+    "aria_call": "Call Sales Office",
     "hero_sub": "Sixty residences set among the quiet, tree-lined streets of northern Sector 1 — where the city softens into forest, and every return home feels like a retreat.",
     "hero_cta2": "View apartments",
     "hero_scroll": "SCROLL",
@@ -1004,20 +1333,6 @@ const TRANSLATIONS = {
     "plan_3": "3 Rooms",
     "plan_4": "4 Rooms",
     "plan_ph": "Penthouse",
-    "room_living": "Living / Kitchen",
-    "room_bedroom": "Bedroom",
-    "room_bedroom1": "Bedroom 1",
-    "room_bedroom2": "Bedroom 2",
-    "room_bedroom3": "Bedroom 3",
-    "room_terrace": "Terrace",
-    "room_bath": "Bath",
-    "room_dining": "Dining",
-    "room_hall": "Hall",
-    "room_kitchendining": "Kitchen / Dining",
-    "room_livingdining": "Living / Dining",
-    "room_primary": "Primary Suite",
-    "room_dressing": "Dressing room",
-    "room_bathstudy": "Bath / Study",
     "avail_eyebrow": "AVAILABILITY",
     "avail_h2": "Select a Floor. Discover Your Residence.",
     "avail_lede": "Explore an indicative overview of the apartments available across both staircases. For up-to-date availability and further details, please contact our sales team",
@@ -1045,26 +1360,32 @@ const TRANSLATIONS = {
     "pricing_note": "Prices may vary depending on floor, orientation, surface area. \nPlease contact our sales team for current availability and detailed pricing.\n",
     "amen_eyebrow": "FINISHES & SPECIFICATIONS",
     "amen_h2": "Quality You Can See. Comfort You Can Feel.",
-    "am1_h": "At NOBLES RESIDENCE, quality is considered from the very beginning — from the architecture and technical systems of the building to the materials, finishes and details that shape each home.\nEvery apartment and common area has been designed with a focus on contemporary aesthetics, functionality, durability and everyday comfort. Carefully selected materials and trusted European brands come together to create homes designed not only to look refined, but to feel comfortable for years to come.\n",
-    "am1_p": "",
+    "am1_h": "Considered, down to the details",
+    "am1_p": "At NOBLES RESIDENCE, quality is considered from the very beginning — from the architecture and technical systems of the building to the materials, finishes and details that shape each home.\nEvery apartment and common area has been designed with a focus on contemporary aesthetics, functionality, durability and everyday comfort. Carefully selected materials and trusted European brands come together to create homes designed not only to look refined, but to feel comfortable for years to come.",
     "am2_h": "HEATING SYSTEM",
     "am2_p": "NOBLES RESIDENCE benefits from a centralised heating system serving the entire building, powered by two high-performance De Dietrich heating units located in the technical area at basement level.\nHeat consumption is individually metered for each apartment, combining the efficiency and reliability of a central building system with individual control over consumption.\nHeating within the apartments is provided through a combination of convectors and Purmo radiators, ensuring efficient and comfortable heat distribution throughout each home.",
     "am3_h": "AIR CONDITIONING & CLIMATE CONTROL",
     "am3_p": "Each apartment is equipped with an individual DAIKIN climate-control system designed to provide both cooling and heating.\nThe system is centrally distributed within each apartment, allowing conditioned air to be delivered discreetly throughout the interior while preserving the clean architectural design of the living spaces.\nEach residence has its own dedicated outdoor DAIKIN unit, positioned on the upper roof of the building. This solution keeps external equipment away from balconies and façades while providing each apartment with an independent climate-control system.\nTogether with the building’s central heating system, the DAIKIN installation provides additional flexibility and year-round thermal comfort.",
     "am4_h": "WINDOWS & EXTERIOR JOINERY",
     "am4_p": "The exterior joinery has been selected to provide generous natural light, thermal performance and a clean contemporary appearance.\nNOBLES RESIDENCE incorporates premium SCHÜCO aluminium systems, selected according to the architectural and technical requirements of each façade element.\nLarge glazed surfaces enhance the connection between the interiors and outdoor spaces while contributing to the contemporary architectural identity of the residence.",
+    "am_show_more": "See more specifications",
+    "am_show_less": "Hide specifications",
     "gallery_eyebrow": "GALLERY",
     "gallery_h2": "A closer look",
     "location_eyebrow": "LOCATION",
     "nearby_title": "Nearby Nobles Residence",
     "land1": "Băneasa Forest & Parks",
+    "land2": "Aurel Vlaicu Metro Station",
     "land3": "Herăstrău / King Michael I Park",
+    "land4": "Băneasa Shopping City",
     "land5": "International schools",
+    "land6": "Henri Coandă Airport",
     "near1": "Nearby",
     "near2": "Short drive",
     "near3": "Nearby",
     "near4": "Short drive",
     "near5": "Nearby",
+    "near6": "Short drive",
     "timeline_eyebrow": "TIMELINE",
     "timeline_h2": "On the way to completion",
     "t1_title": "Foundation & structure",
@@ -1101,17 +1422,6 @@ const TRANSLATIONS = {
     "modal_rooms": "ROOMS",
     "modal_surface": "SURFACE",
     "modal_orientation": "ORIENTATION",
-    "land2": "Aurel Vlaicu Metro Station",
-    "land4": "Băneasa Shopping City",
-    "land6": "Henri Coandă Airport",
-    "near6": "Short drive",
-    "partners_eyebrow": "TRUSTED PARTNERS",
-    "partners_h2": "Partners & providers of excellence",
-    "partners_lede": "Designers, Suppliers  who supply the finest materials and execution for Nobles Residence.",
-    "partner_role_arch": "Architectural Design",
-    "partner_role_struct": "Structural Engineering",
-    "partner_role_facade": "Façade & Stone Works",
-    "partner_role_mep": "MEP & Smart Systems",
     "alt_logo": "Nobles Residence logo",
     "alt_hero": "Nobles Residence building at dusk",
     "alt_exterior": "Nobles Residence exterior at dusk",
@@ -1123,11 +1433,15 @@ const TRANSLATIONS = {
     "next_image": "Next image",
     "apt_unavail_badge": "NOT AVAILABLE",
     "apt_unavail_price": "Unavailable",
+    "partners_eyebrow": "TRUSTED PARTNERS",
+    "partners_h2": "Partners & providers of excellence",
+    "partners_lede": "Designers and Suppliers who supply the finest materials and execution for Nobles Residence.",
+    "partners_show_more": "See our partners",
+    "partners_show_less": "Hide partners",
     "partner_role_1": "Architectural Design",
     "partner_role_2": "for sustainable building envelopes",
     "partner_role_3": "Boilers / Heating systems",
     "partner_role_4": "interior and entrance doors",
-    "card_viewplan": "View plan",
     "partner_role_5": "central air conditioning",
     "partner_role_6": "Best Elevator Solutions",
     "partner_role_7": "Global leader in water solutions",
@@ -1135,7 +1449,17 @@ const TRANSLATIONS = {
     "partner_role_9": "Radiators and floor-mounted convectors – Aquilo",
     "partner_role_10": "global leader in bathroom faucets",
     "partner_role_11": "Washable interior paints",
-    "partner_role_12": "Drywall systems"
+    "partner_role_12": "Drywall systems",
+    "cookie_text": "We use essential cookies to ensure the proper functionality of our website and to provide you with the best browsing experience.",
+    "cookie_accept": "Accept All",
+    "cookie_essential": "Essential Only",
+    "spec_rooms": "Total Rooms",
+    "spec_bathrooms": "Bathrooms",
+    "spec_balcony": "Balcony / Terrace",
+    "spec_garden": "Private Garden",
+    "spec_surface": "Usable Surface Area",
+    "val_yes": "Yes",
+    "val_na": "N/A"
   },
   "ro": {
     "nav_residence": "Reședință",
@@ -1147,6 +1471,8 @@ const TRANSLATIONS = {
     "nav_location": "Locație",
     "nav_partners": "Parteneri",
     "nav_cta": "Programați o vizită",
+    "call_now": "Sunați Echipa",
+    "aria_call": "Apelați biroul de vânzări",
     "hero_sub": "Șaizeci de rezidențe pe străzile liniștite, umbrite de copaci, din nordul Sectorului 1 — acolo unde orașul se topește în pădure, iar fiecare întoarcere acasă este ca un refugiu.",
     "hero_cta2": "Vedeți apartamentele",
     "hero_scroll": "DERULAȚI",
@@ -1190,20 +1516,6 @@ const TRANSLATIONS = {
     "plan_3": "3 camere",
     "plan_4": "4 camere",
     "plan_ph": "Penthouse",
-    "room_living": "Living / Bucătărie",
-    "room_bedroom": "Dormitor",
-    "room_bedroom1": "Dormitor 1",
-    "room_bedroom2": "Dormitor 2",
-    "room_bedroom3": "Dormitor 3",
-    "room_terrace": "Terasă",
-    "room_bath": "Baie",
-    "room_dining": "Zonă de luat masa",
-    "room_hall": "Hol",
-    "room_kitchendining": "Bucătărie / Zonă de luat masa",
-    "room_livingdining": "Living / Zonă de luat masa",
-    "room_primary": "Dormitor principal",
-    "room_dressing": "Dressing",
-    "room_bathstudy": "Baie / Birou",
     "avail_eyebrow": "DISPONIBILITATE",
     "avail_h2": "Alege etajul. Descoperă-ți viitoarea locuință.",
     "avail_lede": "Explorează o prezentare orientativă a apartamentelor din ambele scări. Pentru disponibilitatea actualizată și informații suplimentare, te invităm să contactezi echipa noastră de vânzări.",
@@ -1228,29 +1540,35 @@ const TRANSLATIONS = {
     "price_ph": "Penthouse",
     "price_parking": "Parcare",
     "price_parking_note": "Pornind de la",
-    "pricing_note": "Prețurile varia în funcție de etaj, orientare, suprafață. \nPentru disponibilitatea actualizată și informații detaliate despre prețuri, te invităm să contactezi echipa noastră de vânzări.\n",
+    "pricing_note": "Prețurile pot varia în funcție de etaj, orientare, suprafață. \nPentru disponibilitatea actualizată și informații detaliate despre prețuri, te invităm să contactezi echipa noastră de vânzări.\n",
     "amen_eyebrow": "FINISAJE & SPECIFICAȚII",
     "amen_h2": "Calitate pe care o vezi. Confort pe care îl simți.",
-    "am1_h": "La NOBLES RESIDENCE, calitatea este luată în considerare încă de la început — de la arhitectura și sistemele tehnice ale clădirii până la materialele, finisajele și detaliile care definesc fiecare locuință.\nFiecare apartament și fiecare spațiu comun au fost proiectate punând accent pe estetica contemporană, funcționalitate, durabilitate și confortul de zi cu zi. Materialele atent selecționate și brandurile europene de încredere se îmbină pentru a crea locuințe concepute nu doar pentru a arăta elegant, ci și pentru a oferi confort pe termen lung.\n",
-    "am1_p": "",
+    "am1_h": "Gândit în detaliu, de la început",
+    "am1_p": "La NOBLES RESIDENCE, calitatea este luată în considerare încă de la început — de la arhitectura și sistemele tehnice ale clădirii până la materialele, finisajele și detaliile care definesc fiecare locuință.\nFiecare apartament și fiecare spațiu comun au fost proiectate punând accent pe estetica contemporană, funcționalitate, durabilitate și confortul de zi cu zi. Materialele atent selecționate și brandurile europene de încredere se îmbină pentru a crea locuințe concepute nu doar pentru a arăta elegant, ci și pentru a oferi confort pe termen lung.",
     "am2_h": "SISTEM DE ÎNCĂLZIRE",
-    "am2_p": "NOBLES RESIDENCE beneficiază de un sistem centralizat de încălzire care deservește întreaga clădire, alimentat de două centrale termice performante De Dietrich, amplasate în spațiul tehnic de la nivelul subsolului.\nConsumul de energie termică este contorizat individual pentru fiecare apartament, îmbinând eficiența și fiabilitatea unui sistem centralizat al clădirii cu posibilitatea monitorizării consumului individual.\nÎncălzirea în apartamente este asigurată printr-o combinație de convectoare și radiatoare Purmo, pentru o distribuție eficientă și confortabilă a căldurii în întreaga locuință.\n",
+    "am2_p": "NOBLES RESIDENCE beneficiază de un sistem centralizat de încălzire care deservește întreaga clădire, alimentat de două centrale termice performante De Dietrich, amplasate în spațiul tehnic de la nivelul subsolului.\nConsumul de energie termică este contorizat individual pentru fiecare apartament, îmbinând eficiența și fiabilitatea unui sistem centralizat al clădirii cu posibilitatea monitorizării consumului individual.\nÎncălzirea în apartamente este asigurată printr-o combinație de convectoare și radiatoare Purmo, pentru o distribuție eficientă și confortabilă a căldurii în întreaga locuință.",
     "am3_h": "AER CONDIȚIONAT & CONTROL CLIMATIC",
     "am3_p": "Fiecare apartament este echipat cu un sistem individual de climatizare DAIKIN, conceput pentru a asigura atât răcirea, cât și încălzirea spațiilor.\nSistemul este distribuit centralizat în interiorul fiecărui apartament, permițând climatizarea discretă a spațiilor și păstrarea unui design interior curat și elegant.\nFiecare locuință beneficiază de propria unitate exterioară DAIKIN, amplasată pe acoperișul superior al clădirii. Această soluție elimină echipamentele exterioare de pe balcoane și fațade, oferind în același timp fiecărui apartament un sistem de climatizare independent.\nÎmpreună cu sistemul centralizat de încălzire al clădirii, instalația DAIKIN oferă flexibilitate suplimentară și confort termic pe tot parcursul anului.",
     "am4_h": "FERESTRE & TÂMPLĂRIE EXTERIOARĂ",
     "am4_p": "Tâmplăria exterioară a fost aleasă pentru a oferi lumină naturală generoasă, performanță termică și un aspect contemporan elegant.\nNOBLES RESIDENCE utilizează sisteme premium din aluminiu SCHÜCO, selectate în funcție de cerințele arhitecturale și tehnice ale fiecărui element de fațadă.\nSuprafețele vitrate generoase amplifică legătura dintre interior și spațiile exterioare și contribuie la identitatea arhitecturală contemporană a ansamblului.",
+    "am_show_more": "Vezi restul specificațiilor",
+    "am_show_less": "Ascunde specificațiile",
     "gallery_eyebrow": "GALERIE",
     "gallery_h2": "O privire mai atentă",
     "location_eyebrow": "LOCAȚIE",
     "nearby_title": "În apropiere de Nobles Residence",
     "land1": "Pădurea și parcurile Băneasa",
+    "land2": "Stația de metrou Aurel Vlaicu",
     "land3": "Herăstrău / Parcul Regele Mihai I",
+    "land4": "Băneasa Shopping City",
     "land5": "Școli internaționale",
+    "land6": "Aeroportul Henri Coandă",
     "near1": "În apropiere",
     "near2": "La scurtă distanță cu mașina",
     "near3": "În apropiere",
     "near4": "La scurtă distanță cu mașina",
     "near5": "În apropiere",
+    "near6": "La scurtă distanță cu mașina",
     "timeline_eyebrow": "CRONOLOGIE",
     "timeline_h2": "Pe drumul spre finalizare",
     "t1_title": "Fundație și structură",
@@ -1287,17 +1605,6 @@ const TRANSLATIONS = {
     "modal_rooms": "CAMERE",
     "modal_surface": "SUPRAFAȚĂ",
     "modal_orientation": "ORIENTARE",
-    "land2": "Stația de metrou Aurel Vlaicu",
-    "land4": "Băneasa Shopping City",
-    "land6": "Aeroportul Henri Coandă",
-    "near6": "La scurtă distanță cu mașina",
-    "partners_eyebrow": "PARTENERI DE ÎNCREDERE",
-    "partners_h2": "Parteneri și furnizori de excelență",
-    "partners_lede": "Designeri și Furnizori care asigură materiale și execuție de cea mai înaltă calitate pentru Nobles Residence.",
-    "partner_role_arch": "Proiectare de arhitectură",
-    "partner_role_struct": "Inginerie structurală",
-    "partner_role_facade": "Fațade și lucrări din piatră",
-    "partner_role_mep": "Instalații și sisteme inteligente",
     "alt_logo": "Sigla Nobles Residence",
     "alt_hero": "Clădirea Nobles Residence la asfințit",
     "alt_exterior": "Exteriorul Nobles Residence la asfințit",
@@ -1309,19 +1616,33 @@ const TRANSLATIONS = {
     "next_image": "Imaginea următoare",
     "apt_unavail_badge": "INDISPONIBIL",
     "apt_unavail_price": "Indisponibil",
+    "partners_eyebrow": "PARTENERI DE ÎNCREDERE",
+    "partners_h2": "Parteneri și furnizori de excelență",
+    "partners_lede": "Designeri și Furnizori care asigură materiale și execuție de cea mai înaltă calitate pentru Nobles Residence.",
+    "partners_show_more": "Vezi partenerii",
+    "partners_show_less": "Ascunde partenerii",
     "partner_role_1": "Proiectare de arhitectură",
-    "partner_role_2": "Inginerie structurală",
-    "partner_role_3": "Centrale termice",
-    "partner_role_4": "uși de interior și intrare ",
-    "card_viewplan": "Vezi planul",
+    "partner_role_2": "pentru anvelope sustenabile",
+    "partner_role_3": "Centrale termice / sisteme de încălzire",
+    "partner_role_4": "uși de interior și intrare",
     "partner_role_5": "sistem centralizat de aer condiționat",
     "partner_role_6": "Cele mai bune soluții pentru ascensoare",
     "partner_role_7": "Lider mondial în soluții pentru apă",
-    "partner_role_8": "Încălzire, Instalații sanitare și termice ",
-    "partner_role_9": "Radiatoare și Convectoarele de pardoseală - Aquilo ",
+    "partner_role_8": "Încălzire, Instalații sanitare și termice",
+    "partner_role_9": "Radiatoare și Convectoare de pardoseală - Aquilo",
     "partner_role_10": "lider mondial în baterii sanitare",
     "partner_role_11": "Vopsele lavabile interior",
-    "partner_role_12": "Sisteme de gips carton"
+    "partner_role_12": "Sisteme de gips carton",
+    "cookie_text": "Utilizăm cookie-uri esențiale pentru a asigura buna funcționare a site-ului și pentru a vă oferi o experiență optimă de navigare.",
+    "cookie_accept": "Acceptă Tot",
+    "cookie_essential": "Doar Esențiale",
+    "spec_rooms": "Număr Camere",
+    "spec_bathrooms": "Băi",
+    "spec_balcony": "Balcon / Terasă",
+    "spec_garden": "Grădină Proprie",
+    "spec_surface": "Suprafață Utilă",
+    "val_yes": "Da",
+    "val_na": "Nu / Nu e cazul"
   }
 };
 
@@ -1375,8 +1696,27 @@ function applyStaticI18n(){
     document.querySelectorAll('#galGrid img').forEach((im,i)=>{ if(GALLERY[i]) im.alt = galAlt(GALLERY[i]); });
   }
   applyTimelineStatus();
+  updateCollapsibleLabels();
   document.documentElement.lang = currentLang;
 }
+
+function updateCollapsibleLabels(){
+  const partBtn = document.getElementById('partnersToggleBtn');
+  if(partBtn){
+    const txtSpan = partBtn.querySelector('.btn-txt');
+    if(txtSpan){
+      txtSpan.textContent = partBtn.classList.contains('open') ? t('partners_show_less') : t('partners_show_more');
+    }
+  }
+  const amBtn = document.getElementById('amToggleBtn');
+  if(amBtn){
+    const txtSpan = amBtn.querySelector('.btn-txt');
+    if(txtSpan){
+      txtSpan.textContent = amBtn.classList.contains('open') ? t('am_show_less') : t('am_show_more');
+    }
+  }
+}
+
 function applyTimelineStatus(){
   document.querySelectorAll('.tstep').forEach(el=>{
     const k = el.classList.contains('done') ? 'ts_done' : el.classList.contains('half') ? 'ts_half' : 'ts_next';
@@ -1412,18 +1752,20 @@ const APT_CATEGORIES = {
       ],
       "surface": "146 m²",
       "rooms": "2",
+      "bathrooms": "1",
+      "balcony": "1 (Terrace)",
+      "balcony_ro": "1 (Terasă)",
+      "garden": "yes",
       "price": "590,000 € + VAT",
       "subnote": {
         "en": "Available on the ground floor, with garden",
         "ro": "Disponibil la parter, cu grădină"
       },
       "en": {
-        "name": "2 Rooms — Type A",
-        "desc": "A private ground-floor residence with a generous private garden, refined interior finishes in European oak and brushed brass, and an expansive living area."
+        "name": "2 Rooms — Type A"
       },
       "ro": {
         "name": "2 camere — Tip A",
-        "desc": "O reședință privată la parter cu grădină proprie generoasă, finisaje rafinate din stejar european și alamă periată, alături de o zonă de zi amplă.",
         "surface": "146 m²",
         "price": "590,000 € + TVA"
       },
@@ -1441,14 +1783,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "112 m²",
       "rooms": "2",
+      "bathrooms": "1",
+      "balcony": "1 (Terrace)",
+      "balcony_ro": "1 (Terasă)",
+      "garden": "yes",
       "price": "455,000 € + VAT",
       "en": {
-        "name": "2 Rooms — Type B",
-        "desc": "An open-plan living and kitchen area in warm walnut tones, with a bedroom set apart from the entertaining space."
+        "name": "2 Rooms — Type B"
       },
       "ro": {
         "name": "2 camere — Tip B",
-        "desc": "Living și bucătărie în spațiu deschis, în nuanțe calde de nuc, cu un dormitor separat de zona de relaxare.",
         "surface": "112 m²",
         "price": "455,000 € + TVA"
       },
@@ -1469,14 +1813,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "66 m²",
       "rooms": "2",
+      "bathrooms": "1",
+      "balcony": "1",
+      "balcony_ro": "1",
+      "garden": "no",
       "price": "295,000 € + VAT",
       "en": {
-        "name": "2 Rooms — Type C",
-        "desc": "A dark, gallery-like bedroom suite with a built-in media wall, paired with an airy, sheer-curtained living space."
+        "name": "2 Rooms — Type C"
       },
       "ro": {
         "name": "2 camere — Tip C",
-        "desc": "Un dormitor cu tonuri închise, tip galerie, cu perete media încastrat, alături de un living luminos, cu perdele vaporoase.",
         "surface": "66 m²",
         "price": "295,000 € + TVA"
       },
@@ -1497,14 +1843,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "Starting from 61 m²",
       "rooms": "2",
+      "bathrooms": "1",
+      "balcony": "1",
+      "balcony_ro": "1",
+      "garden": "no",
       "price": "325,000 € + VAT",
       "en": {
-        "name": "2 Rooms — Type D",
-        "desc": "A dual-exposure corner layout featuring extended glazing, an en-suite dressing nook, and a quiet garden-facing bedroom."
+        "name": "2 Rooms — Type D"
       },
       "ro": {
         "name": "2 camere — Tip D",
-        "desc": "O compartimentare pe colț cu dublă orientare, suprafețe vitrate mari, zonă de dressing integrată și dormitor cu vedere spre grădină.",
         "surface": "de la 61 m²",
         "price": "325,000 € + TVA"
       },
@@ -1518,6 +1866,10 @@ const APT_CATEGORIES = {
       "code": "E",
       "surface": "73 m²",
       "rooms": "2",
+      "bathrooms": "1",
+      "balcony": "1",
+      "balcony_ro": "1",
+      "garden": "no",
       "price": "344,000 € + VAT",
       "status": "available",
       "img": "images/apt-2rooms-E-de9c5631.jpg",
@@ -1527,12 +1879,10 @@ const APT_CATEGORIES = {
         "images/apt-2rooms-E-3feeef54.png"
       ],
       "en": {
-        "name": "2 Rooms — Type E",
-        "desc": "New residence description."
+        "name": "2 Rooms — Type E"
       },
       "ro": {
         "name": "2 Camere — Tip E",
-        "desc": "Descriere apartament nou.",
         "surface": "73 m²",
         "price": "344,000 € + TVA"
       },
@@ -1551,14 +1901,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "164 m²",
       "rooms": "3",
+      "bathrooms": "2",
+      "balcony": "1 (Terrace)",
+      "balcony_ro": "1 (Terasă)",
+      "garden": "yes",
       "price": "765,000 € + VAT",
       "en": {
-        "name": "3 Rooms — Type A",
-        "desc": "Two bedrooms and a generous living and dining space beneath a sculptural chandelier, designed for evenings with guests."
+        "name": "3 Rooms — Type A"
       },
       "ro": {
         "name": "3 camere — Tip A",
-        "desc": "Două dormitoare și un living generos cu zonă de luat masa sub un candelabru sculptural, gândit pentru seri cu invitați.",
         "surface": "164 m²",
         "price": "765,000 € + TVA"
       },
@@ -1576,14 +1928,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "78 m²",
       "rooms": "3",
+      "bathrooms": "2",
+      "balcony": "1",
+      "balcony_ro": "1",
+      "garden": "no",
       "price": "Starting from 356,000 € + VAT",
       "en": {
-        "name": "3 Rooms — Type B",
-        "desc": "Gold-accented interiors throughout, with a primary suite and a second bedroom set beside an expansive shared living space."
+        "name": "3 Rooms — Type B"
       },
       "ro": {
         "name": "3 camere — Tip B",
-        "desc": "Interioare cu accente aurii în întreaga locuință, cu un dormitor principal și un al doilea dormitor, alături de un living amplu, comun.",
         "surface": "78 m²",
         "price": "de la 356,000 € + TVA"
       },
@@ -1601,14 +1955,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "82 m²",
       "rooms": "3",
+      "bathrooms": "2",
+      "balcony": "1",
+      "balcony_ro": "1",
+      "garden": "no",
       "price": "Starting from 376,000 € + VAT",
       "en": {
-        "name": "3 Rooms — Type C",
-        "desc": "A primary bedroom with a full walk-in dressing room, gold-trimmed panelling, and an open living area close by."
+        "name": "3 Rooms — Type C"
       },
       "ro": {
         "name": "3 camere — Tip C",
-        "desc": "Un dormitor principal cu dressing complet, panouri cu finisaje aurii și o zonă de living deschisă, alăturată.",
         "surface": "82 m²",
         "price": "de la 376,000 € + TVA"
       },
@@ -1630,14 +1986,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "85 m²",
       "rooms": "3",
+      "bathrooms": "2",
+      "balcony": "1 (Large terrace)",
+      "balcony_ro": "1 (Terasă generoasă)",
+      "garden": "no",
       "price": "Starting from 377,000 € + VAT",
       "en": {
-        "name": "3 Rooms — Type D",
-        "desc": "A split-wing layout offering maximum privacy between bedrooms, accompanied by a spacious terrace overlooking the treetops."
+        "name": "3 Rooms — Type D"
       },
       "ro": {
         "name": "3 camere — Tip D",
-        "desc": "O compartimentare decomandată ce oferă intimitate maximă între dormitoare, completată de o terasă generoasă cu vedere spre coroanele copacilor.",
         "surface": "85 m²",
         "price": "de la 377,000 € + TVA"
       },
@@ -1660,14 +2018,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "Starting from 92 m²",
       "rooms": "3",
+      "bathrooms": "2",
+      "balcony": "1",
+      "balcony_ro": "1",
+      "garden": "no",
       "price": "Starting from 462,000 € + VAT",
       "en": {
-        "name": "3 Rooms — Type E",
-        "desc": "Designed with an expanded living salon, dedicated dining alcove, and floor-to-ceiling windows framed in dark anodised aluminium."
+        "name": "3 Rooms — Type E"
       },
       "ro": {
         "name": "3 camere — Tip E",
-        "desc": "Conceput cu un salon extins, un colț dedicat servirii mesei și ferestre de la podea până la tavan, în rame din aluminiu eloxat de culoare închisă.",
         "surface": "de la 92 m²",
         "price": "de la 462,000 € + TVA"
       },
@@ -1685,14 +2045,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "103 m²",
       "rooms": "3",
+      "bathrooms": "2",
+      "balcony": "1 (Corner balcony)",
+      "balcony_ro": "1 (Balcon pe colț)",
+      "garden": "no",
       "price": "522,000 € + VAT",
       "en": {
-        "name": "3 Rooms — Type F",
-        "desc": "A premium corner suite featuring two full bathrooms, integrated oak cabinetry, and unobstructed views towards Herăstrău."
+        "name": "3 Rooms — Type F"
       },
       "ro": {
         "name": "3 camere — Tip F",
-        "desc": "O suită pe colț de nivel superior, cu două băi complete, mobilier integrat din stejar și vedere nestingherită spre Herăstrău.",
         "surface": "103 m²",
         "price": "522,000 € + TVA"
       },
@@ -1712,14 +2074,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "321 m²",
       "rooms": "4",
+      "bathrooms": "3",
+      "balcony": "2 (Terraces)",
+      "balcony_ro": "2 (Terase)",
+      "garden": "yes",
       "price": "1,290,000 € + VAT",
       "en": {
-        "name": "4 Rooms — Type A",
-        "desc": "A family-sized residence with three bedrooms — one with its own study desk and reading corner — and a formal dining area."
+        "name": "4 Rooms — Type A"
       },
       "ro": {
         "name": "4 camere — Tip A",
-        "desc": "O rezidență generoasă pentru familie, cu trei dormitoare — unul cu birou propriu și colț de lectură — și o zonă formală de luat masa.",
         "surface": "321 m²",
         "price": "1,290,000 € + TVA"
       },
@@ -1744,14 +2108,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "136 m²",
       "rooms": "4",
+      "bathrooms": "2",
+      "balcony": "2",
+      "balcony_ro": "2",
+      "garden": "no",
       "price": "690,000 € + VAT",
       "en": {
-        "name": "4 Rooms — Type B",
-        "desc": "Three bedrooms in warm, gallery-like tones, arranged around a fully separate kitchen and a bright, sheer-curtained living room."
+        "name": "4 Rooms — Type B"
       },
       "ro": {
         "name": "4 camere — Tip B",
-        "desc": "Trei dormitoare în tonuri calde, tip galerie, dispuse în jurul unei bucătării complet separate și a unui living luminos.",
         "surface": "136 m²",
         "price": "705,000 € + TVA"
       },
@@ -1769,14 +2135,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "230 m²",
       "rooms": "4",
+      "bathrooms": "3",
+      "balcony": "2",
+      "balcony_ro": "2",
+      "garden": "no",
       "price": "",
       "en": {
-        "name": "4 Rooms — Type C",
-        "desc": "An open-plan living and kitchen area in warm walnut tones, with three bedrooms including a primary suite with dressing room."
+        "name": "4 Rooms — Type C"
       },
       "ro": {
         "name": "4 camere — Tip C",
-        "desc": "Living și bucătărie în spațiu deschis, în nuanțe calde de nuc, cu trei dormitoare, inclusiv un dormitor principal cu dressing.",
         "surface": "230 m²",
         "price": ""
       },
@@ -1790,14 +2158,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "122–132 m²",
       "rooms": "4",
+      "bathrooms": "2",
+      "balcony": "2 (Dual loggias)",
+      "balcony_ro": "2 (Logii duble)",
+      "garden": "no",
       "price": "Starting from 255,000 € + VAT",
       "en": {
-        "name": "4 Rooms — Type D",
-        "desc": "A grand four-room residence featuring an expansive salon, guest suite with private bath, and dual loggias."
+        "name": "4 Rooms — Type D"
       },
       "ro": {
         "name": "4 camere — Tip D",
-        "desc": "O reședință amplă cu patru camere, ce dispune de un salon generos, suită pentru oaspeți cu baie privată și logii duble.",
         "surface": "122–132 m²",
         "price": "de la 255,000 € + TVA"
       },
@@ -1811,14 +2181,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "180 m²",
       "rooms": "4",
+      "bathrooms": "3",
+      "balcony": "2",
+      "balcony_ro": "2",
+      "garden": "no",
       "price": "1,144,000 € + VAT",
       "en": {
-        "name": "4 Rooms — Type E",
-        "desc": "An executive floor plan featuring a dedicated library/study room, master retreat with walk-in closet, and custom stone bathrooms."
+        "name": "4 Rooms — Type E"
       },
       "ro": {
         "name": "4 camere — Tip E",
-        "desc": "O compartimentare executivă cu birou/bibliotecă dedicată, dormitor principal cu dressing propriu și băi finisate în piatră naturală.",
         "surface": "180 m²",
         "price": "1,144,000 € + TVA"
       },
@@ -1832,14 +2204,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "221 m²",
       "rooms": "4",
+      "bathrooms": "3",
+      "balcony": "Wrap-around terrace",
+      "balcony_ro": "Terasă perimetrală",
+      "garden": "no",
       "price": "1,350,000 € + VAT",
       "en": {
-        "name": "4 Rooms — Type F",
-        "desc": "The most expansive standard flat layout, complete with wrap-around perimeter terrace access and cross-ventilated living quarters."
+        "name": "4 Rooms — Type F"
       },
       "ro": {
         "name": "4 camere — Tip F",
-        "desc": "Cea mai generoasă configurație standard, completată de acces perimetral la terasă și spații de zi luminoase, cu ventilație transversală.",
         "surface": "221 m²",
         "price": "1,350,000 € + TVA"
       },
@@ -1855,14 +2229,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "140–160 m²",
       "rooms": "4–5",
+      "bathrooms": "3",
+      "balcony": "Panoramic terrace",
+      "balcony_ro": "Terasă panoramică",
+      "garden": "no",
       "price": "Starting from 385,000 € + VAT",
       "en": {
-        "name": "Penthouse — Type A",
-        "desc": "The residence's finest addresses — top-floor apartments with walk-in dressing rooms, gold-trimmed interiors and uninterrupted views over Herăstrău."
+        "name": "Penthouse — Type A"
       },
       "ro": {
         "name": "Penthouse — Tip A",
-        "desc": "Cele mai rafinate adrese ale rezidenței — apartamente la ultimul etaj, cu dressing, interioare cu finisaje aurii și priveliște neîntreruptă spre Herăstrău.",
         "surface": "140–160 m²",
         "price": "de la 385,000 € + TVA"
       },
@@ -1876,14 +2252,16 @@ const APT_CATEGORIES = {
       ],
       "surface": "160–190 m²",
       "rooms": "5",
+      "bathrooms": "4",
+      "balcony": "Private rooftop terrace",
+      "balcony_ro": "Terasă privată pe acoperiș",
+      "garden": "no",
       "price": "Starting from 420,000 € + VAT",
       "en": {
-        "name": "Penthouse — Type B",
-        "desc": "The largest residences in the building, with an expansive living and dining space beneath a sculptural chandelier and a private rooftop terrace."
+        "name": "Penthouse — Type B"
       },
       "ro": {
         "name": "Penthouse — Tip B",
-        "desc": "Cele mai spațioase rezidențe din clădire, cu un living generos și zonă de luat masa sub un candelabru sculptural, plus terasă privată pe acoperiș.",
         "surface": "160–190 m²",
         "price": "de la 420,000 € + TVA"
       },
@@ -1893,6 +2271,10 @@ const APT_CATEGORIES = {
       "code": "C",
       "surface": "300 m²",
       "rooms": "5",
+      "bathrooms": "4",
+      "balcony": "Rooftop deck",
+      "balcony_ro": "Terasă exterioară pe acoperiș",
+      "garden": "no",
       "price": "0000 € + VAT",
       "status": "unavailable",
       "img": "images/apt-phrooms-C-759aeb57.jpg",
@@ -1900,12 +2282,10 @@ const APT_CATEGORIES = {
         "images/apt-phrooms-C-759aeb57.jpg"
       ],
       "en": {
-        "name": "ph Rooms — Type C",
-        "desc": "New residence description."
+        "name": "ph Rooms — Type C"
       },
       "ro": {
         "name": "ph Camere — Tip C",
-        "desc": "Descriere apartament nou.",
         "surface": "300 m²",
         "price": "0000 € + TVA"
       }
@@ -2338,7 +2718,6 @@ function renderApartments(){
       ? formatPrice((currentLang==='ro'&&a.ro&&a.ro.price)?a.ro.price:a.price) + ' · <span style="color:#ff8585; font-size:12px;">' + (t('status_unavailable')||'not available') + '</span>'
       : formatPrice((currentLang==='ro'&&a.ro&&a.ro.price)?a.ro.price:a.price);
 
-    /* View plan button (.zoomtag) is removed completely */
     el.innerHTML = `
       <div class="thumb">
         <img src="${images[0]}" alt="${t('alt_interior').replace('{n}', d.name)}" loading="lazy">
@@ -2399,7 +2778,7 @@ document.querySelectorAll('#aptFilters .filter-btn').forEach(btn=>{
   });
 });
 
-/* ============ APARTMENT MODAL + ZOOM ============ */
+/* ============ APARTMENT MODAL + STRUCTURED SPECS TABLE ============ */
 const aptModalBg = document.getElementById('aptModalBg');
 const aptModal = document.getElementById('aptModal');
 
@@ -2408,6 +2787,12 @@ function openAptModal(a, startIdx = 0){
   const gallery = (a.gallery && a.gallery.length > 0) ? a.gallery : [a.img];
   const initialImg = gallery[startIdx] || gallery[0];
   const subnoteText = a.subnote ? a.subnote[currentLang] || a.subnote.en : '';
+
+  const surfaceVal = (currentLang==='ro' && a.ro && a.ro.surface) ? a.ro.surface : a.surface;
+  const balconyVal = (currentLang==='ro' && a.balcony_ro) ? a.balcony_ro : (a.balcony || t('val_na'));
+  const gardenVal = (a.garden === 'yes') ? t('val_yes') : t('val_na');
+  const bathroomsVal = a.bathrooms || '1';
+  const roomsVal = a.rooms || '2';
 
   aptModal.innerHTML = `
     <button class="modal-close" data-close>✕</button>
@@ -2418,10 +2803,33 @@ function openAptModal(a, startIdx = 0){
     </div>
     <div class="body">
       <h3>${d.name}</h3>
-      <div class="mspecs">
-        <div><span>${t('modal_surface')}</span><b>${t('usable_area_prefix')}: ${(currentLang==='ro'&&a.ro&&a.ro.surface)?a.ro.surface:a.surface}</b></div>
-      </div>
-      <p class="mdesc">${d.desc}</p>
+
+      <!-- Structured Specs Table in place of long text paragraph -->
+      <table class="apt-specs-table">
+        <tbody>
+          <tr>
+            <td class="spec-lbl">${t('spec_surface')}</td>
+            <td class="spec-val">${surfaceVal}</td>
+          </tr>
+          <tr>
+            <td class="spec-lbl">${t('spec_rooms')}</td>
+            <td class="spec-val">${roomsVal}</td>
+          </tr>
+          <tr>
+            <td class="spec-lbl">${t('spec_bathrooms')}</td>
+            <td class="spec-val">${bathroomsVal}</td>
+          </tr>
+          <tr>
+            <td class="spec-lbl">${t('spec_balcony')}</td>
+            <td class="spec-val">${balconyVal}</td>
+          </tr>
+          <tr>
+            <td class="spec-lbl">${t('spec_garden')}</td>
+            <td class="spec-val">${gardenVal}</td>
+          </tr>
+        </tbody>
+      </table>
+
       ${subnoteText ? `<span class="msubnote">${subnoteText}</span>` : ''}
       <div class="mprice"><b>${formatPrice((currentLang==='ro'&&a.ro&&a.ro.price)?a.ro.price:a.price)}</b><a href="#contact" class="btn-gold" data-close>${t('modal_enquire')}</a></div>
       <div class="thumbrow">${gallery.map((g,i)=>`<img src="${g}" class="${i===startIdx?'active':''}" data-src="${g}">`).join('')}</div>
@@ -2725,8 +3133,6 @@ const io = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
 },{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const partnersEl = document.getElementById('partnersGrid');
-if(partnersEl) io.observe(partnersEl);
 
 /* ============ HERO VIDEO FALLBACK ============ */
 const heroVideo = document.getElementById('heroVideo');
@@ -2741,6 +3147,61 @@ document.getElementById('contactForm').addEventListener('submit', e=>{
   document.getElementById('formMsg').classList.add('show');
   e.target.reset();
 });
+
+/* ============ COLLAPSIBLE PARTNERS TOGGLE ============ */
+const partnersToggleBtn = document.getElementById('partnersToggleBtn');
+const partnersCollapse = document.getElementById('partnersCollapse');
+
+if(partnersToggleBtn && partnersCollapse){
+  partnersToggleBtn.addEventListener('click', ()=>{
+    const isOpen = partnersCollapse.classList.toggle('open');
+    partnersToggleBtn.classList.toggle('open', isOpen);
+    partnersToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    const txtSpan = partnersToggleBtn.querySelector('.btn-txt');
+    if(txtSpan){
+      txtSpan.textContent = isOpen ? t('partners_show_less') : t('partners_show_more');
+    }
+  });
+}
+
+/* ============ COLLAPSIBLE AMENITIES TOGGLE ============ */
+const amToggleBtn = document.getElementById('amToggleBtn');
+const amDrawer = document.getElementById('amDrawer');
+
+if(amToggleBtn && amDrawer){
+  amToggleBtn.addEventListener('click', ()=>{
+    const isOpen = amDrawer.classList.toggle('open');
+    amToggleBtn.classList.toggle('open', isOpen);
+    amToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    const txtSpan = amToggleBtn.querySelector('.btn-txt');
+    if(txtSpan){
+      txtSpan.textContent = isOpen ? t('am_show_less') : t('am_show_more');
+    }
+  });
+}
+
+/* ============ COOKIE CONSENT BANNER LOGIC ============ */
+const cookieBanner = document.getElementById('cookieBanner');
+const cookieAccept = document.getElementById('cookieAccept');
+const cookieDecline = document.getElementById('cookieDecline');
+
+if(cookieBanner){
+  if(!localStorage.getItem('nobles_cookies_set')){
+    setTimeout(()=>{ cookieBanner.classList.add('show'); }, 1200);
+  }
+  if(cookieAccept){
+    cookieAccept.addEventListener('click', ()=>{
+      localStorage.setItem('nobles_cookies_set', 'all');
+      cookieBanner.classList.remove('show');
+    });
+  }
+  if(cookieDecline){
+    cookieDecline.addEventListener('click', ()=>{
+      localStorage.setItem('nobles_cookies_set', 'essential');
+      cookieBanner.classList.remove('show');
+    });
+  }
+}
 
 /* ============ APPLY DEFAULT LANGUAGE ON LOAD ============ */
 applyStaticI18n();
